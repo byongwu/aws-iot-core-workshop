@@ -116,8 +116,9 @@ loopCount = 0
 while True:
     if args.mode == 'both' or args.mode == 'publish':
         message = {}
-        message['message'] = random.randint(1,100)
+        message['time_created'] = time.time()
         message['sequence'] = loopCount
+        message['random_val'] = random.randint(1,100)
         messageJson = json.dumps(message)
         try:
             myAWSIoTMQTTClient.publish(topic, messageJson, 1)
